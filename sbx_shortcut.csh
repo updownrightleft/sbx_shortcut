@@ -14,15 +14,15 @@ if ( ! $?script_sbx_short ) then
 endif
 # set init variables
 
-# source defaults variables 
+# source defaults variables if not set
 if ($script_sbx_short == 0) then
     source ~/sbx_def_short.csh
     setenv script_sbx_short 1
 endif
-# source defaults variables 
+# source defaults variables if not set
 
 # set sbx paths
-if ($script_sbx_short == 1) then
+if ($script_sbx_short == 1 || $script_sbx_short == 2 ) then
     setenv sbx_select $d_sel
     # if ( $?1 ) then
     #     setenv sbx_select $1
@@ -56,6 +56,7 @@ if ($script_sbx_short == 1) then
 
     # path level 3
     setenv snps_owned    $ip_automotive/SNPS_owned
+    setenv customer_owned     $ip_automotive/Customer_owned
 
     # path level 4
     setenv platforms     $snps_owned/Platforms
@@ -93,4 +94,5 @@ if ($script_sbx_short == 1) then
 
     echo selected-sandbox: "\033[1m$sbx_select\033[0m"
     echo selected-generation: "\033[1m$generation\033[0m"
+    setenv script_sbx_short 2
 # set sbx paths
